@@ -1,3 +1,3 @@
-module GB2260
+class GB2260
   VERSION = "0.1.0"
 end
