@@ -15,5 +15,9 @@ class GB2260
     def ==(other)
       code == other.code && year == other.year
     end
+
+    def province
+      Division.get(@code[0,2] + '0000'.freeze, @year)
+    end
   end
 end
