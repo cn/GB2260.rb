@@ -13,4 +13,11 @@ describe GB2260::Division do
     expect(GB2260::Division.get(110100).is_province?).to be_falsey
     expect(GB2260::Division.get(110101).is_province?).to be_falsey
   end
+
+  it '#prefecture returns a prefecture division' do
+    bj_city = GB2260::Division.new(110100, '市辖区')
+    expect(GB2260::Division.get(110000).prefecture).to be_nil
+    expect(GB2260::Division.get(110100).prefecture).to eq(bj_city)
+    expect(GB2260::Division.get(110101).prefecture).to eq(bj_city)
+  end
 end

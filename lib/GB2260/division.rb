@@ -23,5 +23,9 @@ class GB2260
     def is_province?
       province == self
     end
+
+    def prefecture
+      Division.get(@code[0,4] + '00'.freeze, @year) unless is_province?
+    end
   end
 end
