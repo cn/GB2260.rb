@@ -16,6 +16,10 @@ class GB2260
       code == other.code && year == other.year
     end
 
+    def to_s
+      "<GB2260-#{@year||LATEST_YEAR} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
+    end
+
     def province
       Division.get(@code[0,2] + '0000'.freeze, @year)
     end

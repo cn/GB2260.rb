@@ -20,7 +20,7 @@ class GB2260
 
       def search(code, year=nil)
         year ||= LATEST_YEAR
-        data[year][code]
+        data[year.to_s][code.to_s]
       end
     end
   end

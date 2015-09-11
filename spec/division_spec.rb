@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe GB2260::Division do
+  it '.get returns an instance' do
+    expect(GB2260::Division.get(110000)).to eq GB2260::Division.new(110000, '北京市')
+    expect(GB2260::Division.get(110100)).to eq GB2260::Division.new(110100, '市辖区')
+    expect(GB2260::Division.get(110101)).to eq GB2260::Division.new(110101, '东城区')
+  end
+
   it '#province returns a province division' do
     beijing = GB2260::Division.new(110000, '北京市')
     expect(GB2260::Division.get(110000).province).to eq(beijing)
@@ -38,5 +44,11 @@ describe GB2260::Division do
     expect(GB2260::Division.get(110000).is_county?).to be_falsey
     expect(GB2260::Division.get(110100).is_county?).to be_falsey
     expect(GB2260::Division.get(110101).is_county?).to be_truthy
+  end
+
+  it '#to_s returns a description' do
+    expect("#{GB2260::Division.get(110000)}").to eq '<GB2260-2014 北京市>'
+    expect("#{GB2260::Division.get(110100)}").to eq '<GB2260-2014 北京市/市辖区>'
+    expect("#{GB2260::Division.get(110101)}").to eq '<GB2260-2014 北京市/市辖区/东城区>'
   end
 end
