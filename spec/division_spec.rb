@@ -20,4 +20,10 @@ describe GB2260::Division do
     expect(GB2260::Division.get(110100).prefecture).to eq(bj_city)
     expect(GB2260::Division.get(110101).prefecture).to eq(bj_city)
   end
+
+  it '#is_prefecture? returns a boolean' do
+    expect(GB2260::Division.get(110000).is_prefecture?).to be_falsey
+    expect(GB2260::Division.get(110100).is_prefecture?).to be_truthy
+    expect(GB2260::Division.get(110101).is_prefecture?).to be_falsey
+  end
 end
