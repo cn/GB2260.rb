@@ -21,7 +21,7 @@ class GB2260
     end
 
     def province
-      Division.get(@code[0,2] + '0000'.freeze, @year)
+      Division.get(@code[0,2] + PROVINCE_SUFFIX, @year)
     end
 
     def is_province?
@@ -29,7 +29,7 @@ class GB2260
     end
 
     def prefecture
-      Division.get(@code[0,4] + '00'.freeze, @year) unless is_province?
+      Division.get(@code[0,4] + PREFECTURE_SUFFIX, @year) unless is_province?
     end
 
     def is_prefecture?
