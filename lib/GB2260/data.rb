@@ -2,20 +2,18 @@ class GB2260
   class Data
     class << self
       def data
-        @data ||= {
-          '2014' => {
-            '110000' => '北京市',
-            '110100' => '市辖区',
-            '110101' => '东城区',
-            '110102' => '西城区',
-            '110105' => '朝阳区',
-            '110106' => '丰台区',
-            '110107' => '石景山区',
-            '110108' => '海淀区',
-            '110109' => '门头沟区',
-            '110111' => '房山区',
-          },
-        }
+        gem_dir = File.join(File.dirname(__FILE__), '../../')
+        Dir.chdir(gem_dir) do
+          @data ||= Hash[Dir.glob("data/*.txt").map do |fn|
+            [
+              fn.gsub(/data\/GB2260-/, '').gsub(/\.txt$/, ''),
+              Hash[
+                File.readlines(File.expand_path(File.join(gem_dir, fn))).map do |l|
+                  l.strip.split("\t")
+                end]
+            ]
+          end]
+        end
       end
 
       def search(code, year=nil)
