@@ -33,4 +33,10 @@ describe GB2260::Division do
     expect(GB2260::Division.get(110100).county).to be_nil
     expect(GB2260::Division.get(110101).county).to eq(dongcheng)
   end
+
+  it '#is_county? returns a boolean' do
+    expect(GB2260::Division.get(110000).is_county?).to be_falsey
+    expect(GB2260::Division.get(110100).is_county?).to be_falsey
+    expect(GB2260::Division.get(110101).is_county?).to be_truthy
+  end
 end

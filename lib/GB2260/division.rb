@@ -35,5 +35,9 @@ class GB2260
     def county
       self unless is_province? or is_prefecture?
     end
+
+    def is_county?
+      !is_province? and !is_prefecture?
+    end
   end
 end
