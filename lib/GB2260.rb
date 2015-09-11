@@ -26,4 +26,11 @@ class GB2260
       .reject { |c| c.end_with? '0000'.freeze }
       .map { |c| Division.get(c, @year) }
   end
+
+  def counties(prefecture_code)
+    Data.data[@year].keys
+      .select { |c| c.start_with? prefecture_code.to_s[0,4] }
+      .reject { |c| c.end_with? '00'.freeze }
+      .map { |c| Division.get(c, @year) }
+  end
 end

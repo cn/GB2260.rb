@@ -21,4 +21,11 @@ describe GB2260 do
     expect(GB2260.new.prefectures(110000)).to_not include(GB2260::Division.get(110101))
     expect(GB2260.new.prefectures(110000).all?(&:is_prefecture?)).to be_truthy
   end
+
+  it '#counties' do
+    expect(GB2260.new.counties(110100)).to include(GB2260::Division.get(110101))
+    expect(GB2260.new.counties(110100)).to_not include(GB2260::Division.get(110000))
+    expect(GB2260.new.counties(110100)).to_not include(GB2260::Division.get(110100))
+    expect(GB2260.new.counties(110100).all?(&:is_county?)).to be_truthy
+  end
 end
