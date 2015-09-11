@@ -7,4 +7,10 @@ describe GB2260::Division do
     expect(GB2260::Division.get(110100).province).to eq(beijing)
     expect(GB2260::Division.get(110101).province).to eq(beijing)
   end
+
+  it '#is_province? returns a boolean' do
+    expect(GB2260::Division.get(110000).is_province?).to be_truthy
+    expect(GB2260::Division.get(110100).is_province?).to be_falsey
+    expect(GB2260::Division.get(110101).is_province?).to be_falsey
+  end
 end
