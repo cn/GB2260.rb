@@ -26,4 +26,11 @@ describe GB2260::Division do
     expect(GB2260::Division.get(110100).is_prefecture?).to be_truthy
     expect(GB2260::Division.get(110101).is_prefecture?).to be_falsey
   end
+
+  it '#county returns a county division' do
+    dongcheng = GB2260::Division.new(110101, '东城区')
+    expect(GB2260::Division.get(110000).county).to be_nil
+    expect(GB2260::Division.get(110100).county).to be_nil
+    expect(GB2260::Division.get(110101).county).to eq(dongcheng)
+  end
 end

@@ -31,5 +31,9 @@ class GB2260
     def is_prefecture?
       prefecture == self
     end
+
+    def county
+      self unless is_province? or is_prefecture?
+    end
   end
 end
