@@ -10,7 +10,6 @@ Gem::Specification.new do |spec|
   spec.email         = ["liyuan0228@gmail.com"]
 
   spec.summary       = %q{The Ruby implementation for looking up the Chinese administrative divisions.}
-  spec.description   = File.read('README.md')
   spec.homepage      = "https://github.com/wolflee/GB2260.rb"
   spec.license       = "MIT"
 
