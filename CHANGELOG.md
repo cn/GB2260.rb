@@ -8,9 +8,13 @@ GB2260.rb is in a pre-1.0 state. This means that its APIs and behavior are subje
 
 * Your contribution here!
 
+## 0.1.1 (2015-09-12)
+
+* Fix description on rubygems
+
 ## 0.1.0 (2015-09-12)
 
 * Initial release
 
 [Semver]: http://semver.org
-[Unreleased]: https://github.com/wolflee/GB2260.rb/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/wolflee/GB2260.rb/compare/v0.1.1...HEAD
