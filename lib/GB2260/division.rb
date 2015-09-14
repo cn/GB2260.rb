@@ -3,13 +3,13 @@ class GB2260
     attr_reader :code, :name, :year
 
     def self.get(code, year=nil)
-      new(code, Data.search(code, year))
+      new(code, Data.search(code, year), year)
     end
 
     def initialize(code, name, year=nil)
       @code = code.to_s
       @name = name.to_s
-      @year = year
+      @year = (year || LATEST_YEAR).to_s
     end
 
     def ==(other)
@@ -17,7 +17,7 @@ class GB2260
     end
 
     def to_s
-      "<GB2260-#{@year||LATEST_YEAR} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
+      "<GB2260-#{@year} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
     end
 
     def province

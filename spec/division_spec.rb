@@ -51,4 +51,10 @@ describe GB2260::Division do
     expect("#{GB2260::Division.get(110100)}").to eq '<GB2260-2014 北京市/市辖区>'
     expect("#{GB2260::Division.get(110101)}").to eq '<GB2260-2014 北京市/市辖区/东城区>'
   end
+
+  context 'when an earlier @year is given' do
+    it 'does not equal to latest division' do
+      expect(GB2260::Division.get(110101)).to_not eq GB2260::Division.get(110101, 2004)
+    end
+  end
 end
