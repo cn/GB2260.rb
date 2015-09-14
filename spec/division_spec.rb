@@ -47,9 +47,9 @@ describe GB2260::Division do
   end
 
   it '#to_s returns a description' do
-    expect("#{GB2260::Division.get(110000)}").to eq '<GB2260-2014 北京市>'
-    expect("#{GB2260::Division.get(110100)}").to eq '<GB2260-2014 北京市/市辖区>'
-    expect("#{GB2260::Division.get(110101)}").to eq '<GB2260-2014 北京市/市辖区/东城区>'
+    expect("#{GB2260::Division.get(110000)}").to eq '<GB2260-2014 110000 北京市>'
+    expect("#{GB2260::Division.get(110100)}").to eq '<GB2260-2014 110100 北京市/市辖区>'
+    expect("#{GB2260::Division.get(110101)}").to eq '<GB2260-2014 110101 北京市/市辖区/东城区>'
   end
 
   context 'when an earlier @year is given' do

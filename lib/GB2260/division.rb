@@ -17,7 +17,7 @@ class GB2260
     end
 
     def to_s
-      "<GB2260-#{@year} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
+      "<GB2260-#{@year} #{@code} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
     end
 
     def province
