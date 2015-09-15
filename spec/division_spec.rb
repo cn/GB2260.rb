@@ -56,6 +56,12 @@ describe GB2260::Division do
       expect("#{GB2260::Division.get(110100)}").to eq '<GB2260-2014 110100 北京市/市辖区>'
       expect("#{GB2260::Division.get(110101)}").to eq '<GB2260-2014 110101 北京市/市辖区/东城区>'
     end
+
+    it 'is hashable' do
+      hsh = { GB2260::Division.get(110101) => 1 }
+      hsh[GB2260::Division.get(110101)] = 2
+      expect(hsh.size).to eq 1
+    end
   end
 
   context 'when an earlier @year is given' do

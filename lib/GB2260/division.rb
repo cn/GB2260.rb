@@ -13,11 +13,19 @@ class GB2260
     end
 
     def ==(other)
+      eql? other
+    end
+
+    def eql?(other)
       code == other.code && year == other.year
     end
 
     def to_s
       "<GB2260-#{@year} #{@code} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
+    end
+
+    def hash
+      [@code, @year].hash
     end
 
     def province
