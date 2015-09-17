@@ -6,6 +6,10 @@ class GB2260
       new(code, Data.search(code, year), year)
     end
 
+    def self.batch(codes, year=nil)
+      codes.map { |code| get(code, year) }
+    end
+
     def initialize(code, name, year=nil)
       @code = code.to_s
       @name = name.to_s
@@ -50,6 +54,16 @@ class GB2260
 
     def is_county?
       !is_province? and !is_prefecture?
+    end
+  end
+end
+
+class Array
+  [:select, :reject].each do |action|
+    [:start, :end].each do |position|
+      define_method "#{action}_#{position}_with".to_sym do |predicate|
+        self.send(action) { |c| c.send("#{position}_with?".to_sym, predicate) }
+      end
     end
   end
 end
