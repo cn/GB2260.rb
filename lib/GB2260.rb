@@ -12,24 +12,26 @@ class GB2260
     Division.get(code, @year)
   end
 
-  def provinces
+  def all_code
     Data.data[@year].keys
-      .select { |c| c.end_with? PROVINCE_SUFFIX }
-      .map { |c| Division.get(c, @year) }
+  end
+
+  def provinces
+    Division.batch all_code.select_end_with(PROVINCE_SUFFIX), @year
   end
 
   def prefectures(province_code)
-    Data.data[@year].keys
-      .select { |c| c.start_with? province_code.to_s[0,2] }
-      .select { |c| c.end_with? PREFECTURE_SUFFIX }
-      .reject { |c| c.end_with? PROVINCE_SUFFIX }
-      .map { |c| Division.get(c, @year) }
+    Division.batch(all_code
+      .select_start_with(province_code.to_s[0,2])
+      .select_end_with(PREFECTURE_SUFFIX)
+      .reject_end_with(PROVINCE_SUFFIX),
+    @year)
   end
 
   def counties(prefecture_code)
-    Data.data[@year].keys
-      .select { |c| c.start_with? prefecture_code.to_s[0,4] }
-      .reject { |c| c.end_with? PREFECTURE_SUFFIX }
-      .map { |c| Division.get(c, @year) }
+    Division.batch(all_code
+      .select_start_with(prefecture_code.to_s[0,4])
+      .reject_end_with(PREFECTURE_SUFFIX),
+    @year)
   end
 end
