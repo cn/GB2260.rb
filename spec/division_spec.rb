@@ -14,6 +14,13 @@ describe GB2260::Division do
       end
     end
 
+    describe '.batch' do
+      subject { GB2260::Division.batch([110000, 110100, 110101]) }
+      it 'returns array of divisions' do
+        is_expected.to eq [beijing, bj_city, dc_dist]
+      end
+    end
+
     describe '#province' do
       it 'returns a province division' do
         expect(beijing.province).to eq beijing

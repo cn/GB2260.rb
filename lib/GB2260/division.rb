@@ -6,6 +6,10 @@ class GB2260
       new(code, Data.search(code, year), year)
     end
 
+    def self.batch(codes, year=nil)
+      codes.map { |code| get(code, year) }
+    end
+
     def initialize(code, name, year=nil)
       @code = code.to_s
       @name = name.to_s
