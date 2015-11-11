@@ -8,6 +8,10 @@ require "GB2260/array"
 class GB2260
   using ArrayExtensions
 
+  def self.revisions
+    Data.data.keys.reverse
+  end
+
   def initialize(revision=nil)
     @revision = (revision || LATEST_REVISION).to_s
   end

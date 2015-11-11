@@ -5,6 +5,13 @@ describe GB2260 do
     expect(GB2260::VERSION).not_to be nil
   end
 
+  describe ".revisions" do
+    it 'returns all revisions' do
+      expect(GB2260.revisions).to be_instance_of(Array)
+      expect(GB2260.revisions).to start_with(GB2260::LATEST_REVISION)
+    end
+  end
+
   describe '#get' do
     subject { GB2260.new.get(110000) }
     it 'returns a division' do
