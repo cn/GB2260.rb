@@ -2,8 +2,11 @@ require "GB2260/version"
 require "GB2260/constants"
 require "GB2260/data"
 require "GB2260/division"
+require "GB2260/array"
 
 class GB2260
+  using ArrayExtensions
+
   def initialize(year=nil)
     @year = (year || LATEST_YEAR).to_s
   end
