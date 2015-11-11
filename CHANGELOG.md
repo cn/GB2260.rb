@@ -8,6 +8,11 @@ GB2260.rb is in a pre-1.0 state. This means that its APIs and behavior are subje
 
 * Your contribution here!
 
+## 0.2.0 (2015-11-11)
+
+* Implement spec 0.2
+* Deprecate `#year` of `Division` 
+
 ## 0.1.1 (2015-09-12)
 
 * Fix description on rubygems
@@ -17,4 +22,4 @@ GB2260.rb is in a pre-1.0 state. This means that its APIs and behavior are subje
 * Initial release
 
 [Semver]: http://semver.org
-[Unreleased]: https://github.com/wolflee/GB2260.rb/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/cn/GB2260.rb/compare/v0.2.0...HEAD
