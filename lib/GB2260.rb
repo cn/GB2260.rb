@@ -1,5 +1,6 @@
 require "GB2260/version"
 require "GB2260/constants"
+require "GB2260/deprecation"
 require "GB2260/data"
 require "GB2260/division"
 require "GB2260/array"
