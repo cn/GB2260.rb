@@ -9,9 +9,9 @@ class GB2260
         end
       end
 
-      def search(code, year=nil)
-        year ||= LATEST_YEAR
-        data[year.to_s][code.to_s]
+      def search(code, revision=nil)
+        revision ||= LATEST_REVISION
+        data[revision.to_s][code.to_s]
       end
 
       private
@@ -22,11 +22,11 @@ class GB2260
 
       def array_data(dir)
         Dir["data/*.txt"].map do |fn|
-          [strip_year(fn), Hash[per_year_data(real_path(dir, fn))]]
+          [strip_revision(fn), Hash[per_revision_data(real_path(dir, fn))]]
         end
       end
 
-      def per_year_data(filepath)
+      def per_revision_data(filepath)
         File.readlines(filepath).map {|l| l.chomp.split("\t") }
       end
 
@@ -34,7 +34,7 @@ class GB2260
         File.expand_path(File.join(dir, filename))
       end
 
-      def strip_year(filename)
+      def strip_revision(filename)
         filename.sub(/data\/GB2260-/, '').sub(/\.txt$/, '')
       end
     end
