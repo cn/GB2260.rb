@@ -1,19 +1,22 @@
 class GB2260
   class Division
-    attr_reader :code, :name, :year
+    using DeprecationWarner
 
-    def self.get(code, year=nil)
-      new(code, Data.search(code, year), year)
+    attr_reader :code, :name, :revision
+    deprecate :year, :revision
+
+    def self.get(code, revision=nil)
+      new(code, Data.search(code, revision), revision)
     end
 
-    def self.batch(codes, year=nil)
-      codes.map { |code| get(code, year) }
+    def self.batch(codes, revision=nil)
+      codes.map { |code| get(code, revision) }
     end
 
-    def initialize(code, name, year=nil)
+    def initialize(code, name, revision=nil)
       @code = code.to_s
       @name = name.to_s
-      @year = (year || LATEST_YEAR).to_s
+      @revision = (revision || LATEST_REVISION).to_s
     end
 
     def ==(other)
@@ -21,19 +24,19 @@ class GB2260
     end
 
     def eql?(other)
-      code == other.code && year == other.year
+      code == other.code && revision == other.revision
     end
 
     def to_s
-      "<GB2260-#{@year} #{@code} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
+      "<GB2260-#{@revision} #{@code} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
     end
 
     def hash
-      [@code, @year].hash
+      [@code, @revision].hash
     end
 
     def province
-      Division.get(@code[0,2] + PROVINCE_SUFFIX, @year)
+      Division.get(@code[0,2] + PROVINCE_SUFFIX, @revision)
     end
 
     def is_province?
@@ -41,7 +44,7 @@ class GB2260
     end
 
     def prefecture
-      Division.get(@code[0,4] + PREFECTURE_SUFFIX, @year) unless is_province?
+      Division.get(@code[0,4] + PREFECTURE_SUFFIX, @revision) unless is_province?
     end
 
     def is_prefecture?

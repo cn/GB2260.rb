@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe GB2260::Division do
-  context 'when @year is not given' do
+  context 'when @revision is not given' do
     subject(:beijing) { GB2260::Division.get(110000) }
     subject(:bj_city) { GB2260::Division.get(110100) }
     subject(:dc_dist) { GB2260::Division.get(110101) }
@@ -83,14 +83,20 @@ describe GB2260::Division do
       expect(hsh.size).to eq 1
     end
 
-    it 'uses lastest year as default' do
-      expect(GB2260::Division.new(110000, '北京市').instance_variable_get(:@year)).to eq(GB2260::LATEST_YEAR)
+    it 'uses lastest revision as default' do
+      expect(GB2260::Division.new(110000, '北京市').revision).to eq(GB2260::LATEST_REVISION)
     end
   end
 
-  context 'when an earlier @year is given' do
+  context 'when an earlier @revision is given' do
     it 'does not equal to latest division' do
       expect(GB2260::Division.get(110101)).to_not eq GB2260::Division.get(110101, 2004)
+    end
+  end
+
+  context 'when use `year`' do
+    it 'shows deprecation warning' do
+      expect { GB2260::Division.new(110000, '北京市').year }.to output(/DEPRECATION/).to_stderr
     end
   end
 end

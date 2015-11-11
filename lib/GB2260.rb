@@ -8,20 +8,20 @@ require "GB2260/array"
 class GB2260
   using ArrayExtensions
 
-  def initialize(year=nil)
-    @year = (year || LATEST_YEAR).to_s
+  def initialize(revision=nil)
+    @revision = (revision || LATEST_REVISION).to_s
   end
 
   def get(code)
-    Division.get(code, @year)
+    Division.get(code, @revision)
   end
 
   def all_code
-    Data.data[@year].keys
+    Data.data[@revision].keys
   end
 
   def provinces
-    Division.batch all_code.select_end_with(PROVINCE_SUFFIX), @year
+    Division.batch all_code.select_end_with(PROVINCE_SUFFIX), @revision
   end
 
   def prefectures(province_code)
@@ -29,13 +29,13 @@ class GB2260
       .select_start_with(province_code.to_s[0,2])
       .select_end_with(PREFECTURE_SUFFIX)
       .reject_end_with(PROVINCE_SUFFIX),
-    @year)
+    @revision)
   end
 
   def counties(prefecture_code)
     Division.batch(all_code
       .select_start_with(prefecture_code.to_s[0,4])
       .reject_end_with(PREFECTURE_SUFFIX),
-    @year)
+    @revision)
   end
 end
