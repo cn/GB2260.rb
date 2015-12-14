@@ -6,7 +6,8 @@ class GB2260
     deprecate :year, :revision
 
     def self.get(code, revision=nil)
-      new(code, Data.search(code, revision), revision)
+      name = Data.search(code, revision)
+      name && new(code, name, revision)
     end
 
     def self.batch(codes, revision=nil)
