@@ -14,6 +14,17 @@ describe GB2260::Division do
     end
   end
 
+  describe '.batch' do
+    let(:beijing) { GB2260::Division.get(110000) }
+    let(:bj_city) { GB2260::Division.get(110100) }
+    let(:dc_dist) { GB2260::Division.get(110101) }
+    let(:not_exists_division) { GB2260::Division.get(000000) }
+
+    it 'returns the existent divisions' do
+      expect(GB2260::Division.batch([110000, 110100, 110101, 000000])).to match_array [beijing, bj_city, dc_dist]
+    end
+  end
+
   context 'when @revision is not given' do
     subject(:beijing) { GB2260::Division.get(110000) }
     subject(:bj_city) { GB2260::Division.get(110100) }

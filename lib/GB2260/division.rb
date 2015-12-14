@@ -11,7 +11,7 @@ class GB2260
     end
 
     def self.batch(codes, revision=nil)
-      codes.map { |code| get(code, revision) }
+      codes.map { |code| get(code, revision) }.compact
     end
 
     def initialize(code, name, revision=nil)
