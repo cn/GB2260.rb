@@ -36,10 +36,22 @@ class GB2260
     @revision)
   end
 
+  def regex_prefectures(province_code)
+    Division.batch(all_code
+      .select { |c| c =~ /^#{province_code.to_s[0,2]}(?!#{PROVINCE_SUFFIX})/ },
+    @revision)
+  end
+
   def counties(prefecture_code)
     Division.batch(all_code
       .select_start_with(prefecture_code.to_s[0,4])
       .reject_end_with(PREFECTURE_SUFFIX),
+    @revision)
+  end
+
+  def regex_counties(prefecture_code)
+    Division.batch(all_code
+      .select { |c| c =~ /^#{prefecture_code.to_s[0,4]}(?!#{PREFECTURE_SUFFIX})/ },
     @revision)
   end
 end
