@@ -3,11 +3,8 @@ require "GB2260/constants"
 require "GB2260/deprecation"
 require "GB2260/data"
 require "GB2260/division"
-require "GB2260/array"
 
 class GB2260
-  using ArrayExtensions
-
   def self.revisions
     Data.data.keys.reverse
   end
@@ -21,25 +18,27 @@ class GB2260
   end
 
   def all_code
-    Data.data[@revision].keys
+    @all_code ||= Data.data[@revision].keys.freeze
   end
 
   def provinces
-    Division.batch all_code.select_end_with(PROVINCE_SUFFIX), @revision
+    Division.batch all_code.select { |c| c.end_with? PROVINCE_SUFFIX }, @revision
   end
 
   def prefectures(province_code)
-    Division.batch(all_code
-      .select_start_with(province_code.to_s[0,2])
-      .select_end_with(PREFECTURE_SUFFIX)
-      .reject_end_with(PROVINCE_SUFFIX),
-    @revision)
+    province_prefix = province_code.to_s[0,2].freeze
+    Division.batch(all_code.lazy
+      .select { |c| c.start_with? province_prefix }
+      .select { |c| c.end_with? PREFECTURE_SUFFIX }
+      .reject { |c| c.end_with? PROVINCE_SUFFIX }
+      .force, @revision)
   end
 
   def counties(prefecture_code)
-    Division.batch(all_code
-      .select_start_with(prefecture_code.to_s[0,4])
-      .reject_end_with(PREFECTURE_SUFFIX),
-    @revision)
+    prefecture_prefix = prefecture_code.to_s[0,4].freeze
+    Division.batch(all_code.lazy
+      .select { |c| c.start_with? prefecture_prefix }
+      .reject { |c| c.end_with? PREFECTURE_SUFFIX }
+      .force, @revision)
   end
 end
