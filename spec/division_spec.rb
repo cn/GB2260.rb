@@ -1,6 +1,30 @@
 require 'spec_helper'
 
 describe GB2260::Division do
+  describe '.get' do
+    let(:division) { GB2260::Division.get(110000) }
+    let(:not_exists_division) { GB2260::Division.get(000000) }
+
+    it 'returns the division' do
+      expect(division).to eq GB2260::Division.new(110000, '北京市')
+    end
+
+    it 'returns nil when the division doesnt exist' do
+      expect(not_exists_division).to be_nil
+    end
+  end
+
+  describe '.batch' do
+    let(:beijing) { GB2260::Division.get(110000) }
+    let(:bj_city) { GB2260::Division.get(110100) }
+    let(:dc_dist) { GB2260::Division.get(110101) }
+    let(:not_exists_division) { GB2260::Division.get(000000) }
+
+    it 'returns the existent divisions' do
+      expect(GB2260::Division.batch([110000, 110100, 110101, 000000])).to match_array [beijing, bj_city, dc_dist]
+    end
+  end
+
   context 'when @revision is not given' do
     subject(:beijing) { GB2260::Division.get(110000) }
     subject(:bj_city) { GB2260::Division.get(110100) }

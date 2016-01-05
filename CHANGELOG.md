@@ -6,7 +6,7 @@ GB2260.rb is in a pre-1.0 state. This means that its APIs and behavior are subje
 
 ## [Unreleased]
 
-* Your contribution here!
+* Return nil when the division is inexistent (https://github.com/cn/GB2260.rb/pull/4)
 
 ## 0.2.0 (2015-11-11)
 
