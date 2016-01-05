@@ -4,7 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/GB2260.svg)](http://badge.fury.io/rb/GB2260)
 [![Build Status](https://travis-ci.org/cn/GB2260.rb.svg?branch=master)](https://travis-ci.org/cn/GB2260.rb)
 [![Code Climate](https://codeclimate.com/github/cn/GB2260.rb/badges/gpa.svg)](https://codeclimate.com/github/cn/GB2260.rb)
-[![Coverage Status](https://coveralls.io/repos/wolflee/GB2260.rb/badge.svg?branch=master&service=github)](https://coveralls.io/github/wolflee/GB2260.rb?branch=master)
+[![Coverage Status](https://coveralls.io/repos/wolflee/GB2260.rb/badge.svg?branch=master&service=github)](https://coveralls.io/github/cn/GB2260.rb?branch=master)
 
 The Ruby implementation for looking up the Chinese administrative divisions.
 
@@ -38,7 +38,7 @@ puts division  # => <GB2260-2014 江西省/九江市/德安县>
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/wolflee/GB2260.rb. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/cn/GB2260.rb. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 ## License
 
