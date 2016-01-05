@@ -1,6 +1,6 @@
 # GB2260
 
-[![GB/T 2260](http://img.shields.io/badge/GB%2FT-2260-blue.svg?style=flat)](https://github.com/cn/GB2260)
+[![GB/T 2260](https://img.shields.io/badge/GB%2FT%202260-v0.2-blue.svg)](https://github.com/cn/GB2260/blob/v0.2/spec.md)
 [![Gem Version](https://badge.fury.io/rb/GB2260.svg)](http://badge.fury.io/rb/GB2260)
 [![Build Status](https://travis-ci.org/cn/GB2260.rb.svg?branch=master)](https://travis-ci.org/cn/GB2260.rb)
 [![Code Climate](https://codeclimate.com/github/cn/GB2260.rb/badges/gpa.svg)](https://codeclimate.com/github/cn/GB2260.rb)
