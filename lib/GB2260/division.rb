@@ -28,8 +28,12 @@ class GB2260
       code == other.code && revision == other.revision
     end
 
+    def description(separator = '/')
+      [province, prefecture, county].compact.map(&:name).join(separator)
+    end
+
     def to_s
-      "<GB2260-#{@revision} #{@code} #{[province, prefecture, county].compact.map(&:name).join('/')}>"
+      "<GB2260-#{revision} #{code} #{description}>"
     end
 
     def hash

@@ -93,8 +93,22 @@ describe GB2260::Division do
       end
     end
 
+    describe '#description' do
+      it 'returns only the full location string' do
+        expect(beijing.description).to eq '北京市'
+        expect(bj_city.description).to eq '北京市/市辖区'
+        expect(dc_dist.description).to eq '北京市/市辖区/东城区'
+      end
+
+      it 'uses different separators' do
+        expect(beijing.description('^')).to eq '北京市'
+        expect(bj_city.description('-')).to eq '北京市-市辖区'
+        expect(dc_dist.description(' ')).to eq '北京市 市辖区 东城区'
+      end
+    end
+
     describe '#to_s' do
-      it 'returns a description' do
+      it 'returns a human readable description' do
         expect("#{beijing}").to eq '<GB2260-2014 110000 北京市>'
         expect("#{bj_city}").to eq '<GB2260-2014 110100 北京市/市辖区>'
         expect("#{dc_dist}").to eq '<GB2260-2014 110101 北京市/市辖区/东城区>'
