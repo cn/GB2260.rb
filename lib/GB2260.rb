@@ -34,11 +34,23 @@ class GB2260
       .force, @revision)
   end
 
+  def regex_prefectures(province_code)
+    Division.batch(all_code
+      .select { |c| c =~ /^#{province_code.to_s[0,2]}(?!#{PROVINCE_SUFFIX})/ },
+    @revision)
+  end
+
   def counties(prefecture_code)
     prefecture_prefix = prefecture_code.to_s[0,4].freeze
     Division.batch(all_code.lazy
       .select { |c| c.start_with? prefecture_prefix }
       .reject { |c| c.end_with? PREFECTURE_SUFFIX }
       .force, @revision)
+  end
+
+  def regex_counties(prefecture_code)
+    Division.batch(all_code
+      .select { |c| c =~ /^#{prefecture_code.to_s[0,4]}(?!#{PREFECTURE_SUFFIX})/ },
+    @revision)
   end
 end
