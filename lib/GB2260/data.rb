@@ -13,7 +13,7 @@ class GB2260
       end
 
       def search(code, revision=nil)
-        revision ||= LATEST_REVISION
+        revision ||= DEFAULT_REVISION
         data[revision.to_s][code.to_s]
       end
 

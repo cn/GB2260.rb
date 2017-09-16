@@ -122,7 +122,7 @@ describe GB2260::Division do
     end
 
     it 'uses lastest revision as default' do
-      expect(GB2260::Division.new(110000, '北京市').revision).to eq(GB2260::LATEST_REVISION)
+      expect(GB2260::Division.new(110000, '北京市').revision).to eq(GB2260::DEFAULT_REVISION)
     end
   end
 

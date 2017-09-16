@@ -17,7 +17,7 @@ class GB2260
     def initialize(code, name, revision=nil)
       @code = code.to_s
       @name = name.to_s
-      @revision = (revision || LATEST_REVISION).to_s
+      @revision = (revision || DEFAULT_REVISION).to_s
     end
 
     def ==(other)

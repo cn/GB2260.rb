@@ -10,7 +10,7 @@ class GB2260
   end
 
   def initialize(revision=nil)
-    @revision = (revision || LATEST_REVISION).to_s
+    @revision = (revision || DEFAULT_REVISION).to_s
   end
 
   def get(code)

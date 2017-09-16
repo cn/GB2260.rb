@@ -8,7 +8,6 @@ describe GB2260 do
   describe ".revisions" do
     it 'returns all revisions' do
       expect(GB2260.revisions).to be_instance_of(Array)
-      expect(GB2260.revisions).to start_with(GB2260::LATEST_REVISION)
     end
   end
 
