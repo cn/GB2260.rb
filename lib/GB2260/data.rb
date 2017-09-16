@@ -1,3 +1,6 @@
+require 'pathname'
+require 'csv'
+
 class GB2260
   class Data
     GEM_DIR = File.join(File.dirname(__FILE__), '../../').freeze
@@ -21,21 +24,28 @@ class GB2260
       end
 
       def array_data(dir)
-        Dir["data/*.txt"].map do |fn|
-          [strip_revision(fn), Hash[per_revision_data(real_path(dir, fn))]]
+        data_files.map do |fn|
+          [revision_from(fn).to_s, Hash[per_revision_data(real_path(dir, fn))]]
         end
       end
 
+      def data_files
+        Dir['data/**/*.tsv'].reject { |fn| fn =~ /sources/ }
+      end
+
       def per_revision_data(filepath)
-        File.readlines(filepath).map {|l| l.chomp.split("\t") }
+        CSV.readlines(filepath, col_sep: "\t", headers: true, header_converters: :symbol)
+           .map { |div| [div[:code], div[:name]] }
       end
 
       def real_path(dir, filename)
         File.expand_path(File.join(dir, filename))
       end
 
-      def strip_revision(filename)
-        filename.sub(/data\/GB2260-/, '').sub(/\.txt$/, '')
+      def revision_from(filename)
+        (Pathname(File.dirname(filename)).each_filename.to_a[1..-1] +
+         [File.basename(filename, '.tsv')])
+          .join(NAMESPACE_SEPARATOR)
       end
     end
   end
