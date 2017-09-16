@@ -33,7 +33,7 @@ class GB2260
     end
 
     def to_s
-      "<GB2260-#{revision} #{code} #{description}>"
+      "<GB2260-#{revision.split(NAMESPACE_SEPARATOR)[-1]} #{code} #{description}>"
     end
 
     def hash
