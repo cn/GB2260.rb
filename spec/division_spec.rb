@@ -128,7 +128,7 @@ describe GB2260::Division do
 
   context 'when an earlier @revision is given' do
     it 'does not equal to latest division' do
-      expect(GB2260::Division.get(110101)).to_not eq GB2260::Division.get(110101, 2004)
+      expect(GB2260::Division.get(110101)).to_not eq GB2260::Division.get(110101, 200212)
     end
   end
 
