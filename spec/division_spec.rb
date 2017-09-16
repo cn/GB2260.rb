@@ -109,9 +109,9 @@ describe GB2260::Division do
 
     describe '#to_s' do
       it 'returns a human readable description' do
-        expect("#{beijing}").to eq '<GB2260-2014 110000 北京市>'
-        expect("#{bj_city}").to eq '<GB2260-2014 110100 北京市/市辖区>'
-        expect("#{dc_dist}").to eq '<GB2260-2014 110101 北京市/市辖区/东城区>'
+        expect("#{beijing}").to match /<GB2260-\d+ 110000 北京市>/
+        expect("#{bj_city}").to match /<GB2260-\d+ 110100 北京市\/市辖区>/
+        expect("#{dc_dist}").to match /<GB2260-\d+ 110101 北京市\/市辖区\/东城区>/
       end
     end
 
