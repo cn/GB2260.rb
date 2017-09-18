@@ -17,7 +17,7 @@ class GB2260
     def initialize(code, name, revision=nil)
       @code = code.to_s
       @name = name.to_s
-      @revision = (revision || LATEST_REVISION).to_s
+      @revision = (revision || DEFAULT_REVISION).to_s
     end
 
     def ==(other)
@@ -33,7 +33,7 @@ class GB2260
     end
 
     def to_s
-      "<GB2260-#{revision} #{code} #{description}>"
+      "<GB2260-#{revision.split(NAMESPACE_SEPARATOR)[-1]} #{code} #{description}>"
     end
 
     def hash

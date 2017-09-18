@@ -109,9 +109,9 @@ describe GB2260::Division do
 
     describe '#to_s' do
       it 'returns a human readable description' do
-        expect("#{beijing}").to eq '<GB2260-2014 110000 北京市>'
-        expect("#{bj_city}").to eq '<GB2260-2014 110100 北京市/市辖区>'
-        expect("#{dc_dist}").to eq '<GB2260-2014 110101 北京市/市辖区/东城区>'
+        expect("#{beijing}").to match /<GB2260-\d+ 110000 北京市>/
+        expect("#{bj_city}").to match /<GB2260-\d+ 110100 北京市\/市辖区>/
+        expect("#{dc_dist}").to match /<GB2260-\d+ 110101 北京市\/市辖区\/东城区>/
       end
     end
 
@@ -122,13 +122,13 @@ describe GB2260::Division do
     end
 
     it 'uses lastest revision as default' do
-      expect(GB2260::Division.new(110000, '北京市').revision).to eq(GB2260::LATEST_REVISION)
+      expect(GB2260::Division.new(110000, '北京市').revision).to eq(GB2260::DEFAULT_REVISION)
     end
   end
 
   context 'when an earlier @revision is given' do
     it 'does not equal to latest division' do
-      expect(GB2260::Division.get(110101)).to_not eq GB2260::Division.get(110101, 2004)
+      expect(GB2260::Division.get(110101)).to_not eq GB2260::Division.get(110101, 200212)
     end
   end
 

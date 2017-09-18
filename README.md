@@ -33,7 +33,7 @@ The way to look up a administrative division by its GB2260 code is the basic int
 gb2260 = GB2260.new
 
 division = gb2260.get(360426)
-puts division  # => <GB2260-2014 江西省/九江市/德安县>
+puts division  # => <GB2260-201607 360426 江西省/九江市/德安县>
 ```
 
 ## Contributing
